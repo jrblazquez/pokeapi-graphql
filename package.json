@@ -6,11 +6,8 @@
   "author": "Javier R. Blazquez <jrblazquez@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "ts": "tsc",
-    "watch-ts": "tsc -w",
-    "start-watch": "nodemon dist/index.js",
-    "start": "concurrently \"npm run watch-ts\" \"npm run start-watch\"",
-    "start:dev": "ts-node src/index.ts"
+    "start": "node -r ts-node/register --inspect=5858 src/index.ts",
+    "start:dev": "nodemon"
   },
   "dependencies": {
     "express": "^4.16.3",
@@ -21,7 +18,7 @@
     "request": "^2.85.0"
   },
   "devDependencies": {
-    "concurrently": "^3.5.1",
+    "@types/node": "^9.6.8",
     "nodemon": "^1.17.3",
     "ts-node": "^6.0.2",
     "typescript": "^2.8.3"

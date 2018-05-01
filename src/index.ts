@@ -1,74 +1,67 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
-import PokemonSchema from './models/pokemon';
 import * as graphqlHTTP from 'express-graphql';
-import { buildSchema } from 'graphql';
-import {
-  GraphQLObjectType,
-  GraphQLNonNull,
-  GraphQLSchema,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt,
-  GraphQLBoolean
-} from 'graphql/type';
+import rootSchema from './schemas';
 
-const SERVER_PORT = 4000;
+const SERVER_PORT = 4001;
 const DB_HOST = 'localhost';
 const DB_PORT = '27017';
 const DB_NAME = 'pokemon';
 
-mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`)
+mongoose.connection.on('connected', ref => {
+  console.log(`Connected to ${DB_HOST} DB!`);
+  const app = express();
+  app.use('/graphql', graphqlHTTP({
+    schema: rootSchema,
+    graphiql: true,
+  }));
+  app.listen(SERVER_PORT, () => 
+    console.log('Iniciado servidor')
+  );
+});
+
+const gracefulExit = () => { 
+  mongoose.connection.close(function () {
+    console.log('Mongoose default connection with DB is disconnected through app termination');
+    process.exit(0);
+  });
+}
+
+// If the Node process ends, close the Mongoose connection
+process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
+
+try {
+  mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`);
+  console.log("Trying to connect to DB");
+} catch (err) {
+  console.log("Sever initialization failed " , err.message);
+}
+
+/*mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`)
   .then(() => {
     console.log('OK conectar base de datos')
+    const app = express();
+    app.use('/graphql', graphqlHTTP({
+      schema: rootSchema,
+      graphiql: true,
+    }));
+    app.listen(SERVER_PORT, () => 
+      console.log('Iniciado servidor')
+    );
+
+    var gracefulExit = function() { 
+      mongoose.connection.close(function () {
+        console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
+        process.exit(0);
+      });
+    }
+    
+    // If the Node process ends, close the Mongoose connection
+    process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
+
   }, err => {
     console.log('error al conectar ->', err)
   });
 
-const app = express();
 
-const PokemonType = new GraphQLObjectType({
-  name: 'pokemon',
-  fields: () => ({
-    id: {
-      type: GraphQLInt,
-    },
-    number: {
-      type: GraphQLInt,
-    },
-    name: {
-      type: GraphQLString,
-    },
-    height: {
-      type: GraphQLInt,
-    },
-    weight: {
-      type: GraphQLInt,
-    }
-  })
-});
-
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RootQueryType',
-    fields: {
-      pokemon: {
-        type: new GraphQLList(PokemonType),
-        resolve: () => PokemonSchema
-          .find({}, (err, pokemon) => pokemon)
-          .limit(20)
-          .skip(0)
-          .sort({number: 'asc'})
-      }
-    }
-  })
-})
-
-app.use('/graphql', graphqlHTTP({
-  schema,
-  graphiql: true,
-}));
-
-app.listen(SERVER_PORT, () => 
-  console.log('Iniciado servidor')
-);
+*/
