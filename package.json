@@ -1,0 +1,26 @@
+{
+  "name": "pokeapi-graphql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jrblazquez/pokeapi-graphql.git",
+  "author": "Javier R. Blazquez <jrblazquez@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r ts-node/register --inspect=5858 src/index.ts",
+    "start:dev": "nodemon"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "mongodb": "^3.0.7",
+    "mongoose": "^5.0.16",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.8",
+    "nodemon": "^1.17.3",
+    "ts-node": "^6.0.2",
+    "typescript": "^2.8.3"
+  }
+}
