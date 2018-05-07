@@ -18,6 +18,8 @@ export const getPokemon = ({limit, skip}) => PokemonModel
   .sort({number: 'asc'})
 ;
 
-export const setPokemon = (args) => PokemonModel
-  .create(args)
-;
+export const setPokemon = (args) => {
+  console.log(PokemonModel.find({ number: args.number }))
+  /*PokemonModel
+  .create(args)*/
+};

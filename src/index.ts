@@ -36,32 +36,3 @@ try {
 } catch (err) {
   console.log("Sever initialization failed " , err.message);
 }
-
-/*mongoose.connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_NAME}`)
-  .then(() => {
-    console.log('OK conectar base de datos')
-    const app = express();
-    app.use('/graphql', graphqlHTTP({
-      schema: rootSchema,
-      graphiql: true,
-    }));
-    app.listen(SERVER_PORT, () => 
-      console.log('Iniciado servidor')
-    );
-
-    var gracefulExit = function() { 
-      mongoose.connection.close(function () {
-        console.log('Mongoose default connection with DB :' + db_server + ' is disconnected through app termination');
-        process.exit(0);
-      });
-    }
-    
-    // If the Node process ends, close the Mongoose connection
-    process.on('SIGINT', gracefulExit).on('SIGTERM', gracefulExit);
-
-  }, err => {
-    console.log('error al conectar ->', err)
-  });
-
-
-*/
