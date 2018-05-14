@@ -1,8 +1,17 @@
 language: node_js
 node_js:
-  - "9"
-  - "8"
-  - "7"
-  - "6"
-  - "4"
-  - "iojs"
+- '9'
+- '8'
+- '7'
+- '6'
+- '4'
+- iojs
+after_success:
+- |2
+
+  $(npm bin)/set-up-ssh --key "$encrypted_45bdefbbb50d_key" \
+                        --iv "$encrypted_45bdefbbb50d_iv" \
+                        --path-encrypted-key ".travis/github_deploy_key.enc"
+env:
+  global:
+    secure: Uc0eYZEqqM0KMU0oskwGBv28dvgVRHsF95NfOB3h4yxui94Uc/0yZyv1QDYRtNxY7HPNs9dkD1egtXdthZISsLidYt4zF9q5XpdSIp/00cPyCsVgyOROT5C/DNXwn90AXWdYojea8J/8ZnMu6bcFGX7/LP2HxeqYfgrTppiYj0nSBx96z69DiGBpJicfhUZvSd36noZMzPv+IDYeDGCYtTJukM70XcR6/VBvGlz5Dw8J1icoswcStcOuZu3fqcs4yusx3Otjg5svirnIf2rNrmfKwWl/U9TjN39/Ha4Aab1yuef32aLzTzgzEBcc1i/ffIDCmDc6JJH/26zWtNAvH+k9JtrssSAsqT17ydn4qFtbe/93oFXdaMOTC1JLHdsQRQ1gPhpp6Fmj5zeUvD7GS4eaOgjLE1sAL8I21wuOYUBuHsY8JleabvFGEOYJ68272jmeoSsyVOGo1DEQR6dqIwiP+5HOYu2nBhGMRpsraJXQjurc5szgVF8tgDy1ArkpSQgSnrlZSYM3I/Aq8Ds7P0OljhODsL0FcU4rFSL6I5DeZFr378uY4cIItTbxvY7eruXjKXIIrE5/bbTYvQmj1p3xkLZkqLvNpOsYPAGnymHxqyKd7mrCGLfT6XjMJjyiBxfbb7zlLyMT/GZE3bMJOQwX2aEB4tibpM2tK/942dE=

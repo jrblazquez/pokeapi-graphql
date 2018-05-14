@@ -6,6 +6,7 @@
   "author": "Javier R. Blazquez <jrblazquez@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "tsc",
     "start": "node -r ts-node/register --inspect=5858 src/index.ts",
     "start:dev": "nodemon",
     "test": "echo Hello test!"
