@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "master" ]; then
+if [ "${TRAVIS_PULL_REQUEST}" == "false" ] && [ "${TRAVIS_BRANCH}" == "dev" ]; then
   git config user.name $GH_USER_NAME
   git config user.email $GH_USER_EMAIL
   git add --all .
