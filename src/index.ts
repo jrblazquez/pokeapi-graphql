@@ -8,7 +8,15 @@ const DB_HOST = 'localhost';
 const DB_PORT = '27017';
 const DB_NAME = 'pokemon';
 
-mongoose.connection.on('connected', ref => {
+const app = express();
+  app.use('/test', (req, res) => {
+    return res.send('Test');
+  });
+  app.listen(SERVER_PORT, () => 
+    console.log('Iniciado servidor')
+  );
+
+/*mongoose.connection.on('connected', ref => {
   console.log(`Connected to ${DB_HOST} DB!`);
   const app = express();
   app.use('/graphql', graphqlHTTP({
@@ -35,4 +43,4 @@ try {
   console.log("Trying to connect to DB");
 } catch (err) {
   console.log("Sever initialization failed " , err.message);
-}
+}*/
