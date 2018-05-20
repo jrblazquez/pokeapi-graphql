@@ -10,7 +10,7 @@ const DB_NAME = 'pokemon';
 
 const app = express();
   app.use('/test', (req, res) => {
-    return res.send('Test7');
+    return res.send('Test8');
   });
   app.listen(SERVER_PORT, () => 
     console.log('Iniciado servidor')
