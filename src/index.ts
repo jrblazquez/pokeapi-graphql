@@ -3,18 +3,9 @@ import * as mongoose from 'mongoose';
 import * as graphqlHTTP from 'express-graphql';
 import rootSchema from './schemas';
 
-const { SERVER_PORT } = process.env;
-console.log('SERVER_PORT', SERVER_PORT);
+const { SERVER_PORT, DB_HOST, DB_PORT, DB_NAME } = process.env;
 
-const app = express();
-  app.use('/test', (req, res) => {
-    return res.send('Test9');
-  });
-  app.listen(SERVER_PORT, () => 
-    console.log('Iniciado servidor')
-  );
-
-/*mongoose.connection.on('connected', ref => {
+mongoose.connection.on('connected', ref => {
   console.log(`Connected to ${DB_HOST} DB!`);
   const app = express();
   app.use('/graphql', graphqlHTTP({
@@ -41,4 +32,4 @@ try {
   console.log("Trying to connect to DB");
 } catch (err) {
   console.log("Sever initialization failed " , err.message);
-}*/
+}
