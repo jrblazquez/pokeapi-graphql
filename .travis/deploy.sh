@@ -11,8 +11,8 @@ git add --all .
 git commit -m "Deploy from Travis - build {$TRAVIS_BUILD_NUMBER}"
 openssl aes-256-cbc -K $encrypted_603b04cbb5e7_key -iv $encrypted_603b04cbb5e7_iv -in id_rsa_deploy.enc -out id_rsa_deploy -d
 # openssl aes-256-cbc -K $encrypted_45bdefbbb50d_key -iv $encrypted_45bdefbbb50d_iv -in .travis/github_deploy_key.enc -out github_deploy_key.pem -d
-# eval "$(ssh-agent -s)"
-# chmod 600 github_deploy_key.pem
+eval "$(ssh-agent -s)"
+chmod 600 id_rsa_deploy
 # ssh-add github_deploy_key.pem
 ssh-add id_rsa_deploy
 #mv id_rsa_deploy ~/.ssh/id_rsa
