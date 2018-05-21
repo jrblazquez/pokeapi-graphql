@@ -14,4 +14,4 @@ eval "$(ssh-agent -s)"
 chmod 600 github_deploy_key.pem
 ssh-add github_deploy_key.pem
 echo "Sends build"
-git push -f deploy dev
+git push -f integration dev
