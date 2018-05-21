@@ -14,7 +14,7 @@ openssl aes-256-cbc -K $encrypted_603b04cbb5e7_key -iv $encrypted_603b04cbb5e7_i
 # eval "$(ssh-agent -s)"
 # chmod 600 github_deploy_key.pem
 # ssh-add github_deploy_key.pem
-mv id_rsa_deploy-key ~/.ssh/id_rsa
+mv id_rsa_deploy ~/.ssh/id_rsa
 echo "Sends build"
 git show-ref
 git push -f integration master
