@@ -18,5 +18,5 @@ ssh-add id_rsa_deploy
 #mv id_rsa_deploy ~/.ssh/id_rsa
 echo "Sends build"
 git show-ref
-git push -f integration master
+git push -f integration dev
 
