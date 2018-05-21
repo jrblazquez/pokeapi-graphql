@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+echo "Init"
 rm -rf .git
 rm -rf dist
 yarn build
