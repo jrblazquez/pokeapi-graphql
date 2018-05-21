@@ -4,7 +4,7 @@ rm -rf .git
 rm -rf dist
 yarn build
 git init
-git remote add deploy $GH_URI
+git remote add integration $GH_URI
 git config user.name $GH_USER_NAME
 git config user.email $GH_USER_EMAIL
 git add --all .
