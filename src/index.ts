@@ -3,10 +3,8 @@ import * as mongoose from 'mongoose';
 import * as graphqlHTTP from 'express-graphql';
 import rootSchema from './schemas';
 
-const SERVER_PORT = 4001;
-const DB_HOST = 'localhost';
-const DB_PORT = '27017';
-const DB_NAME = 'pokemon';
+const { SERVER_PORT } = process.env;
+console.log('SERVER_PORT', SERVER_PORT);
 
 const app = express();
   app.use('/test', (req, res) => {
