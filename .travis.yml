@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '9'
 before_script:
-  - echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- echo -e "Host *\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 deploy:
   provider: script
   script: bash .travis/deploy.sh
